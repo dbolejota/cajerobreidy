@@ -2,25 +2,21 @@
 
 namespace Database\Factories;
 
+use App\Models\transacciones;
+use App\Models\cuentas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\transacciones>
- */
 class transaccionesFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = transacciones::class;
+
     public function definition(): array
     {
         return [
-            'id_cuentas' =>$this->$faker->id_cuentas(),
-            'cantidad' =>$this->$faker->cantidad(),
-            'tipo_transaccion' =>$this-> $faker->tipo_transaccion(['deposito', 'retiro']),
-            'fecha_transaccion' =>$this->$faker->fecha_transaccion(),
+            'id_cuentas' => cuentas::factory()->create()->id,
+            'cantidad' => $this->faker->randomFloat(2, 0, 100000),
+            'tipo_transaccion' => $this->faker->randomElement(['deposito', 'retiro']),
+            'fecha_transaccion' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

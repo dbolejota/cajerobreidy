@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_cuentas');
+            $table->unsignedBigInteger('id_cuentas');
             $table->decimal('cantidad', 10, 2);
             $table->enum('tipo_transaccion', ['deposito', 'retiro']);
             $table->timestamp('fecha_transaccion')->default(DB::raw('CURRENT_TIMESTAMP'));

@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\billetes;
+use App\Models\cuentas;
+use App\Models\idiomas;
+use App\Models\transacciones;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        billetes::factory()->times(8)->create();
+        cuentas::factory()->times(19)->create();
+        idiomas::factory()->times(17)->create();
+        transacciones::factory()->times(30)->create();
     }
 }

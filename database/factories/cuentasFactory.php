@@ -2,25 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\cuentas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\cuentas>
- */
 class cuentasFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = cuentas::class;
+
     public function definition(): array
     {
         return [
-            'nombres' =>$this->$faker->nombres(),
-            'numero_cuenta' =>$this->$faker->numero_cuenta(),
-            'pin' =>$this->$faker->pin(),
-            'saldo' =>$this->$faker->saldo()
+            'nombres' => $this->faker->name(),
+            'numero_cuenta' => $this->faker->unique()->numerify('########'),
+            'pin' => $this->faker->numberBetween(1000, 9999),
+            'saldo' => $this->faker->randomFloat(2, 0, 100000),
         ];
     }
 }

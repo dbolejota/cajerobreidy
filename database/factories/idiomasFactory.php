@@ -2,22 +2,25 @@
 
 namespace Database\Factories;
 
+use App\Models\idiomas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\idiomas>
- */
 class idiomasFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = idiomas::class;
+
+    // Definir los nombres de idiomas que deseas utilizar
+    protected $nombres = ['Español', 'Inglés', 'Francés', 'Alemán',
+    'Italiano', 'Portugués', 'Ruso', 'Chino', 'Japonés', 'Árabe', 
+    'Griego', 'Hebreo', 'Finlandés', 'Eslovaco', 'Turco', 'Checo', 'Maratí'];
+
     public function definition(): array
     {
+        // Usamos el método 'shuffle' para mezclar el array de nombres
+        shuffle($this->nombres);
+
         return [
-            'nombre' =>$this->$faker->nombre()
+            'nombre' => array_pop($this->nombres)
         ];
     }
 }
